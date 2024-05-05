@@ -11,6 +11,13 @@ public class WordLadder {
         this.nodesVisited = nodesVisited;
     }
 
+    public void setPathError(String error) {
+        if (this.path == null) {
+            this.path = new ArrayList<>();
+        }
+        this.path.add(error);
+    }
+
     public List<String> getPath() {
         return path;
     }

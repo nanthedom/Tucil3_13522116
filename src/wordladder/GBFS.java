@@ -27,7 +27,7 @@ public class GBFS implements IWordLadder {
 
                         if (dictionary.contains(tempWord) && !visited.contains(tempWord)) {
                             int cost = Util.heuristicCost(tempWord, end);
-                            if (cost <= newCost) {
+                            if (cost < newCost) {
                                 newCost = cost;
                                 newWord = tempWord;
                             }
@@ -40,15 +40,5 @@ public class GBFS implements IWordLadder {
                 return new WordLadder(null, check);
             currentNode = new Node(currentNode.getDepth() + 1, newCost, newWord, currentNode);
         }
-    }
-
-    public static void main(String[] args) {
-        lib.Dictionary dict = new lib.Dictionary("dictionary.txt");
-        GBFS solver = new GBFS();
-        WordLadder result = solver.solver("FUCK", "SHIT", dict.getDictionary());
-        List<String> path = result.getPath();
-        int nodesVisited = result.getNodesVisited();
-        System.out.println("Path: " + path);
-        System.out.println("Number of nodes visited: " + nodesVisited);
     }
 }

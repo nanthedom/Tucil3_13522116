@@ -17,7 +17,7 @@ public class UCS implements IWordLadder {
         while (!priorityQueue.isEmpty()) {
             currentNode = priorityQueue.poll();
             String word = currentNode.getWord();
-
+                
             check++;
             if (currentNode.equalWord(end))
                 return new WordLadder(currentNode.buildPath(), check);
@@ -43,15 +43,5 @@ public class UCS implements IWordLadder {
         }
 
         return new WordLadder(null, check);
-    }
-
-    public static void main(String[] args) {
-        lib.Dictionary dict = new lib.Dictionary("dictionary.txt");
-        UCS solver = new UCS();
-        WordLadder result = solver.solver("FUCK", "SHIT", dict.getDictionary());
-        List<String> path = result.getPath();
-        int nodesVisited = result.getNodesVisited();
-        System.out.println("Path: " + path);
-        System.out.println("Number of nodes visited: " + nodesVisited);
     }
 }

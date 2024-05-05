@@ -12,7 +12,7 @@ public class Dictionary {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
-                dictionary.add(line);
+                dictionary.add(line.toUpperCase());
             }
             scanner.close();
         } catch (FileNotFoundException e) {

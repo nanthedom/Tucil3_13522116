@@ -45,14 +45,4 @@ public class AStar implements IWordLadder {
 
         return new WordLadder(null, check);
     }
-
-    public static void main(String[] args) {
-        lib.Dictionary dict = new lib.Dictionary("dictionary.txt");
-        AStar solver = new AStar();
-        WordLadder result = solver.solver("FUCK", "SHIT", dict.getDictionary());
-        List<String> path = result.getPath();
-        int nodesVisited = result.getNodesVisited();
-        System.out.println("Path: " + path);
-        System.out.println("Number of nodes visited: " + nodesVisited);
-    }
 }

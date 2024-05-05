@@ -49,14 +49,14 @@ public class Main {
             UI.printOpening();
             String start = inputStartWord();
             while (!dictionary.contains(start)) {
-                System.out.println("The word " + start + " is not in English dictionary!");
+                System.out.println("The word " + start + " is not in our English dictionary!");
                 start = inputStartWord().toUpperCase();
             }
 
             String end = inputEndWord();
             while (!dictionary.contains(end) || end.length() != start.length()) {
                 if (!dictionary.contains(end)) {
-                    System.out.println("The word " + end + " is not in English dictionary!");
+                    System.out.println("The word " + end + " is not in our English dictionary!");
                 } else {
                     System.out.println("The length of the start and end word doesn't match!");
                 }
