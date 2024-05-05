@@ -67,7 +67,7 @@ public class WordLadderEventHandler {
     }
 
     private void displayProperties(double totalTime, WordLadder result, JLabel propsLabel, boolean valid) {
-        if (!valid) {
+        if (!valid || result.getPath() == null) {
             propsLabel.setText("<html>Number of step: 0<br>Number of node visited: "
                     + result.getNodesVisited()
                     + "<br>Execution Time: " + (totalTime) + " ms</html>");
@@ -81,10 +81,10 @@ public class WordLadderEventHandler {
     private void displayResult(WordLadder result, JTextArea resultArea) {
         resultArea.setText("");
         if (result.getPath() == null) {
-            resultArea.append("\nPath Not Found!");
+            resultArea.append("\n   Path Not Found!");
         } else {
             for (int i = 0; i < result.getPath().size(); i++) {
-                resultArea.append(result.getPath().get(i) + "\n");
+                resultArea.append("   " + result.getPath().get(i) + "\n");
             }
         }
     }
