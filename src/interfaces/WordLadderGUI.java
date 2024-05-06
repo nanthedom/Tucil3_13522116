@@ -40,8 +40,6 @@ public class WordLadderGUI extends JFrame {
 
         submitButton = new JButton("Solve!");
         resultArea = new JTextPane();
-        // resultArea.setLineWrap(true);
-        // resultArea.setWrapStyleWord(true);
 
         scrollPane = new JScrollPane(resultArea);
         scrollPane.setPreferredSize(new Dimension(300, 200));

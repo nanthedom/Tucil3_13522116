@@ -31,7 +31,7 @@ public class UI {
                 _|  _|  _|    _|    _|  _|    _|  _|    _|      _|        _|    _|  _|    _|  _|    _|  _|        _|    _|
                     _|  _|        _|_|    _|    _|  _|_|_|        _|_|_|_|  _|    _|  _|_|_|    _|_|_|    _|_|_|_|  _|    _|
 
-                                """ + Util.ANSI_RESET;
+                                """ + Util.ANSI_RESET + Util.ANSI_RED + "\n>> Press Ctrl + C to terminate program" + Util.ANSI_RESET;
         System.out.print(opening);
     }
 

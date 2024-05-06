@@ -46,13 +46,19 @@ public class Main {
             UI.printOpening();
             String start = inputStartWord();
             while (!dictionary.contains(start)) {
-                System.out.println(Util.ANSI_RED + "The word " + start + " is not in our English dictionary!" + Util.ANSI_RESET);
+                if (start.length() == 0) {
+                    System.out.println(Util.ANSI_RED + "The Start Word cannot be blank!" + Util.ANSI_RESET);
+                } else {
+                    System.out.println(Util.ANSI_RED + "The word " + start + " is not in our English dictionary!" + Util.ANSI_RESET);
+                }
                 start = inputStartWord().toUpperCase();
             }
-
+            
             String end = inputEndWord();
             while (!dictionary.contains(end) || end.length() != start.length()) {
-                if (!dictionary.contains(end)) {
+                if (end.length() == 0) {
+                    System.out.println(Util.ANSI_RED + "The End Word cannot be blank!" + Util.ANSI_RESET);
+                } else if (!dictionary.contains(end)){
                     System.out.println(Util.ANSI_RED + "The word " + end + " is not in our English dictionary!" + Util.ANSI_RESET);
                 } else {
                     System.out.println(Util.ANSI_RED + "The length of the start and end word doesn't match!" + Util.ANSI_RESET);

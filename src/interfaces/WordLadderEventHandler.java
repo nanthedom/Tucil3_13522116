@@ -7,6 +7,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.HashSet;
 
 public class WordLadderEventHandler {
@@ -27,13 +28,17 @@ public class WordLadderEventHandler {
             valid = false;
         } else {
             if (!this.dictionary.contains(startWord)) {
-                String error = "The word " + startWord + " is not in our English dictionary!";
+                String error = "The Start Word is not in our English dictionary!";
                 result.setPathError(error);
+                String str = "Your Start Word: " + startWord;
+                result.setPathError(str);
                 valid = false;
             }
             if (!this.dictionary.contains(endWord)) {
-                String error = "The word " + endWord + " is not in our English dictionary!";
+                String error = "The End Word is not in our English dictionary!";
                 result.setPathError(error);
+                String str = "Your End Word: " + endWord;
+                result.setPathError(str);
                 valid = false;
             }
             if (startWord.length() != endWord.length()) {
@@ -98,10 +103,11 @@ public class WordLadderEventHandler {
 
     private void appendToPane(JTextPane tp, String msg, String endWord, boolean valid) {
         StyleContext sc = StyleContext.getDefaultStyleContext();
-        AttributeSet blackAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground,
-                Color.BLACK);
+        AttributeSet blackAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.BLACK);
         AttributeSet redAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.RED);
-        AttributeSet blueAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.BLUE);
+        AttributeSet greenAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.BLUE);
+        Font font = new Font(Font.MONOSPACED, Font.BOLD, 12);
+        tp.setFont(font);
 
         int len = tp.getDocument().getLength();
         tp.setCaretPosition(len);
@@ -112,7 +118,7 @@ public class WordLadderEventHandler {
             }
         } else {
             for (int i = 0; i < endWord.length(); i++) {
-                AttributeSet attributes = (msg.charAt(i) == endWord.charAt(i)) ? blueAttributes : blackAttributes;
+                AttributeSet attributes = (msg.charAt(i) == endWord.charAt(i)) ? greenAttributes : blackAttributes;
                 tp.setCharacterAttributes(attributes, false);
                 tp.replaceSelection(String.valueOf(msg.charAt(i)));
             }
