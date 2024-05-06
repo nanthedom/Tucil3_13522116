@@ -38,7 +38,7 @@ public class WordLadderGUI extends JFrame {
         String[] algorithms = { "UCS", "GBFS", "A*" };
         algorithmDropdown = new JComboBox<>(algorithms);
 
-        submitButton = new JButton("Submit");
+        submitButton = new JButton("Solve!");
         resultArea = new JTextArea(10, 30);
         resultArea.setLineWrap(true);
         resultArea.setWrapStyleWord(true);

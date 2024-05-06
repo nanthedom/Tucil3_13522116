@@ -4,7 +4,16 @@ import java.io.IOException;
 
 public class UI {
     public static void clearScreen() throws InterruptedException, IOException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        String os = System.getProperty("os.name").toLowerCase();
+        ProcessBuilder processBuilder = new ProcessBuilder();
+
+        if (os.contains("win")) { // Untuk Windows
+            processBuilder.command("cmd", "/c", "cls");
+        } else { // Untuk Linux
+            processBuilder.command("clear");
+        }
+
+        processBuilder.inheritIO().start().waitFor();
     }
 
     public static void printInputInvalid() {

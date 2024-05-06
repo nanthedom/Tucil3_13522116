@@ -72,14 +72,29 @@ Program dibuat menggunakan bahasa Java v 20.0.2 dan GUI dibuat menggunakan Java 
    ```
 2. Buka folder "Tucil3_13522116" di terminal
 3. Lalu run:
-   * Menjalankan di CLI
-      ```sh
-      ./runCLI.bat
-      ```
-   * Menjalankan GUI
-      ```sh
-      ./runGUI.bat
-      ```
+   * Windows
+      * Menjalankan di CLI
+         ```sh
+         ./runCLI.bat
+         ```
+      * Menjalankan GUI
+         ```sh
+         ./runGUI.bat
+         ```
+   * Linux
+   <br>Pastikan Java telah terinstall di OS linux Anda dan bukan versi headless karena untuk menjalankan GUI diperlukan headful library support. Download java melalui web [Java](https://www.oracle.com/java/) atau jalankan perintah berikut ke terminal:
+      * Install java
+         ```sh
+         sudo apt install openjdk-19-jdk
+         ```
+      * Menjalankan di CLI
+         ```sh
+         ./runCLI.sh
+         ```
+      * Menjalankan GUI
+         ```sh
+         ./runGUI.sh
+         ```
 4. Masukkan start word dan end word yang diinginkan lalu temukan solusinya!
 
 Note: Anda bisa mengganti dictionary dengan dictionary yang lebih lengkap atau yang anda inginkan dengan menempatkannya di root folder Tucil3_13522116 dan pastikan menggantinya dengan nama "dictionary.txt" agar bisa di-load.

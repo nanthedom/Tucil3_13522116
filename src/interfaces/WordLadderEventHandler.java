@@ -84,7 +84,7 @@ public class WordLadderEventHandler {
             resultArea.append("\n   Path Not Found!");
         } else {
             for (int i = 0; i < result.getPath().size(); i++) {
-                resultArea.append("   " + result.getPath().get(i) + "\n");
+                resultArea.append(result.getPath().get(i) + "\n");
             }
         }
     }

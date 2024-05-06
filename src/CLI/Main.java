@@ -2,8 +2,6 @@ package CLI;
 
 import java.io.IOException;
 import java.util.*;
-// import lib.*;
-// import wordladder.*;
 
 import wordladder.AStar;
 import wordladder.GBFS;
@@ -27,16 +25,14 @@ public class Main {
         return input.toUpperCase();
     }
 
-    public static int choiceAlgorithm() {
+    public static void choiceAlgorithm() {
         System.out.print("""
                 >> Choose The Algoritma
                     1. Uniform Cost Search
                     2. Greedy Best First Search
                     3. A*
                     """);
-        System.out.print("Enter choice (integer): ");
-        int choice = scan.nextInt();
-        return choice;
+        System.out.print("Enter your choice (1-3): ");
     }
 
     public static void main(String[] args) throws InterruptedException, IOException {
@@ -64,11 +60,23 @@ public class Main {
             }
             System.out.println("\nStart from " + start + " To " + end + "\n");
 
-            int choice = choiceAlgorithm();
-            while (choice < 1 || choice > 3) {
-                System.out.println("\nInvalid input!\n");
-                choice = choiceAlgorithm();
+            int choice = 0;
+            boolean isValidInput = false;
+            while (!isValidInput) {
+                choiceAlgorithm();
+                if (scan.hasNextInt()) {
+                    choice = scan.nextInt();
+                    if (choice >= 1 && choice <= 3) {
+                        isValidInput = true;
+                    } else {
+                        System.out.println("\nInvalid input!\nPlease enter a number between 1 and 3!\n");
+                    }
+                } else {
+                    System.out.println("\nInvalid input!\nPlease enter a valid integer!\n");
+                    scan.next();
+                }
             }
+
             UI.clearScreen();
             System.out.println("\nStart from " + start + " To " + end + "\n");
             System.out.print("Using ");
