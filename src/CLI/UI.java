@@ -2,6 +2,8 @@ package CLI;
 
 import java.io.IOException;
 
+import lib.Util;
+
 public class UI {
     public static void clearScreen() throws InterruptedException, IOException {
         String os = System.getProperty("os.name").toLowerCase();
@@ -21,7 +23,7 @@ public class UI {
     }
 
     public static void printOpening() {
-        String opening = """
+        String opening = Util.ANSI_YELLOW + """
 
                 _|          _|    _|_|    _|_|_|    _|_|_|        _|          _|_|    _|_|_|    _|_|_|    _|_|_|_|  _|_|_|
                 _|          _|  _|    _|  _|    _|  _|    _|      _|        _|    _|  _|    _|  _|    _|  _|        _|    _|
@@ -29,71 +31,71 @@ public class UI {
                 _|  _|  _|    _|    _|  _|    _|  _|    _|      _|        _|    _|  _|    _|  _|    _|  _|        _|    _|
                     _|  _|        _|_|    _|    _|  _|_|_|        _|_|_|_|  _|    _|  _|_|_|    _|_|_|    _|_|_|_|  _|    _|
 
-                                """;
+                                """ + Util.ANSI_RESET;
         System.out.print(opening);
     }
 
     public static void startingLoading() throws InterruptedException, IOException {
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 █▒▒▒▒▒▒▒▒▒ 10%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 ██▒▒▒▒▒▒▒▒ 20%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 ███▒▒▒▒▒▒▒ 30%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 ████▒▒▒▒▒▒ 40%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 █████▒▒▒▒▒ 50%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 ██████▒▒▒▒ 60%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 ███████▒▒▒ 70%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 ████████▒▒ 80%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_RED + """
                 Initialization begin...
                 █████████▒ 90%
-                    """);
+                    """ + Util.ANSI_RESET);
         Thread.sleep(200);
         clearScreen();
-        System.out.print("""
+        System.out.print(Util.ANSI_GREEN + """
                 Initialization begin...
                 ██████████ 100%
-                    """);
-        Thread.sleep(200);
+                    """ + Util.ANSI_RESET);
+        Thread.sleep(1000);
         clearScreen();
     }
 }

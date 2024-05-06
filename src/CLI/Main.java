@@ -3,6 +3,7 @@ package CLI;
 import java.io.IOException;
 import java.util.*;
 
+import lib.Util;
 import wordladder.AStar;
 import wordladder.GBFS;
 import wordladder.UCS;
@@ -45,20 +46,20 @@ public class Main {
             UI.printOpening();
             String start = inputStartWord();
             while (!dictionary.contains(start)) {
-                System.out.println("The word " + start + " is not in our English dictionary!");
+                System.out.println(Util.ANSI_RED + "The word " + start + " is not in our English dictionary!" + Util.ANSI_RESET);
                 start = inputStartWord().toUpperCase();
             }
 
             String end = inputEndWord();
             while (!dictionary.contains(end) || end.length() != start.length()) {
                 if (!dictionary.contains(end)) {
-                    System.out.println("The word " + end + " is not in our English dictionary!");
+                    System.out.println(Util.ANSI_RED + "The word " + end + " is not in our English dictionary!" + Util.ANSI_RESET);
                 } else {
-                    System.out.println("The length of the start and end word doesn't match!");
+                    System.out.println(Util.ANSI_RED + "The length of the start and end word doesn't match!" + Util.ANSI_RESET);
                 }
                 end = inputEndWord().toUpperCase();
             }
-            System.out.println("\nStart from " + start + " To " + end + "\n");
+            System.out.println("\nStart from " + Util.ANSI_RED + start + Util.ANSI_RESET + " To " + Util.ANSI_GREEN + end + Util.ANSI_RESET + "\n");
 
             int choice = 0;
             boolean isValidInput = false;
@@ -69,35 +70,35 @@ public class Main {
                     if (choice >= 1 && choice <= 3) {
                         isValidInput = true;
                     } else {
-                        System.out.println("\nInvalid input!\nPlease enter a number between 1 and 3!\n");
+                        System.out.println(Util.ANSI_RED +"\nInvalid input!\nPlease enter a number between 1 and 3!\n" + Util.ANSI_RESET);
                     }
                 } else {
-                    System.out.println("\nInvalid input!\nPlease enter a valid integer!\n");
+                    System.out.println(Util.ANSI_RED + "\nInvalid input!\nPlease enter a valid integer!\n" + Util.ANSI_RESET);
                     scan.next();
                 }
             }
 
             UI.clearScreen();
-            System.out.println("\nStart from " + start + " To " + end + "\n");
-            System.out.print("Using ");
+            System.out.println("\nStart from " + Util.ANSI_RED + start + Util.ANSI_RESET + " To " + Util.ANSI_GREEN + end + Util.ANSI_RESET + "\n");
+            System.out.print(Util.ANSI_YELLOW + "Using ");
 
             WordLadder result = new WordLadder(null, 0);
             long startTime = System.nanoTime();
             switch (choice) {
                 case 1:
-                    System.out.println("Uniform Cost Search\n");
+                    System.out.println("Uniform Cost Search\n" + Util.ANSI_RESET);
                     UCS ucsSolver = new UCS();
                     result = ucsSolver.solver(start, end, dictionary);
                     break;
 
                 case 2:
-                    System.out.println("Greedy Best First Search\n");
+                    System.out.println("Greedy Best First Search\n" + Util.ANSI_RESET);
                     GBFS gbfsSolver = new GBFS();
                     result = gbfsSolver.solver(start, end, dictionary);
                     break;
 
                 case 3:
-                    System.out.println("A*\n");
+                    System.out.println("A*\n" + Util.ANSI_RESET);
                     AStar aStarSolver = new AStar();
                     result = aStarSolver.solver(start, end, dictionary);
                     break;
@@ -110,17 +111,18 @@ public class Main {
 
             System.out.println("Path: ");
             if (result.getPath() == null) {
-                System.out.println("\nPath Not Found!");
+                System.out.println(Util.ANSI_RED + "\nPath Not Found!" + Util.ANSI_RESET);
                 System.out.println("\nNumber of step: 0");
             } else {
                 for (int i = 0; i < result.getPath().size(); i++) {
-                    System.out.println((i + 1) + ". " + result.getPath().get(i));
+                    String str = lib.Util.colorMatchingCharacters(result.getPath().get(i), end);
+                    System.out.println((i + 1) + ". " + str);
                 }
                 System.out.println("\nNumber of step: " + (result.getPath().size() - 1));
             }
             System.out.println("Number of nodes visited: " + result.getNodesVisited());
             System.out.println("Time Execution: " + totalTime + " ms");
-            System.out.print("\n>> Press Enter key to continue...");
+            System.out.print(Util.ANSI_YELLOW + "\n>> Press Enter key to continue..." + Util.ANSI_RESET);
             scan.nextLine();
             scan.nextLine();
         }

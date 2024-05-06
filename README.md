@@ -66,12 +66,18 @@ Program dibuat menggunakan bahasa Java v 20.0.2 dan GUI dibuat menggunakan Java 
 * [Java](https://www.oracle.com/java/)
 
 ## Cara Menjalankan
-1. Clone Repository
+1. Install Java
+   <br>Pastikan Java telah terinstall di OS Anda dan bukan versi headless karena untuk menjalankan GUI diperlukan headful library support. Download java melalui web [Java](https://www.oracle.com/java/) atau untuk OS Linux jalankan perintah berikut ke terminal:
+   * Install Java
+      ```sh
+      sudo apt install openjdk-19-jdk
+      ```
+2. Clone Repository
    ```sh
    git clone https://github.com/nanthedom/Tucil3_13522116
    ```
-2. Buka folder "Tucil3_13522116" di terminal
-3. Lalu run:
+3. Buka folder "Tucil3_13522116" di terminal
+4. Lalu run:
    * Windows
       * Menjalankan di CLI
          ```sh
@@ -82,11 +88,6 @@ Program dibuat menggunakan bahasa Java v 20.0.2 dan GUI dibuat menggunakan Java 
          ./runGUI.bat
          ```
    * Linux
-   <br>Pastikan Java telah terinstall di OS linux Anda dan bukan versi headless karena untuk menjalankan GUI diperlukan headful library support. Download java melalui web [Java](https://www.oracle.com/java/) atau jalankan perintah berikut ke terminal:
-      * Install java
-         ```sh
-         sudo apt install openjdk-19-jdk
-         ```
       * Menjalankan di CLI
          ```sh
          ./runCLI.sh
@@ -95,7 +96,7 @@ Program dibuat menggunakan bahasa Java v 20.0.2 dan GUI dibuat menggunakan Java 
          ```sh
          ./runGUI.sh
          ```
-4. Masukkan start word dan end word yang diinginkan lalu temukan solusinya!
+5. Masukkan start word dan end word yang Anda inginkan lalu temukan solusinya!
 
 Note: Anda bisa mengganti dictionary dengan dictionary yang lebih lengkap atau yang anda inginkan dengan menempatkannya di root folder Tucil3_13522116 dan pastikan menggantinya dengan nama "dictionary.txt" agar bisa di-load.
 

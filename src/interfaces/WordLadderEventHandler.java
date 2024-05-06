@@ -2,6 +2,11 @@ package interfaces;
 
 import wordladder.*;
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import java.awt.Color;
 import java.util.HashSet;
 
 public class WordLadderEventHandler {
@@ -12,13 +17,8 @@ public class WordLadderEventHandler {
         this.dictionary = d.getDictionary();
     }
 
-    public void handleEvent(String startWord, String endWord, String algorithm, JTextArea resultArea,
+    public void handleEvent(String startWord, String endWord, String algorithm, JTextPane resultArea,
             JLabel propsLabel) {
-        WordLadder result = processWords(startWord, endWord, algorithm, propsLabel);
-        displayResult(result, resultArea);
-    }
-
-    private WordLadder processWords(String startWord, String endWord, String algorithm, JLabel propsLabel) {
         WordLadder result = new WordLadder(null, 0);
         boolean valid = true;
         if (startWord.length() == 0 || endWord.length() == 0) {
@@ -44,26 +44,32 @@ public class WordLadderEventHandler {
         }
         double totalTime = 0;
         if (valid) {
-            long startTime = System.nanoTime();
+            long startTime = 0;
+            long endTime = 0;
             switch (algorithm) {
                 case "UCS":
                     UCS ucsSolver = new UCS();
+                    startTime = System.nanoTime();
                     result = ucsSolver.solver(startWord, endWord, this.dictionary);
+                    endTime = System.nanoTime();
                     break;
                 case "GBFS":
                     GBFS gbfsSolver = new GBFS();
+                    startTime = System.nanoTime();
                     result = gbfsSolver.solver(startWord, endWord, this.dictionary);
+                    endTime = System.nanoTime();
                     break;
                 case "A*":
                     AStar aStarSolver = new AStar();
+                    startTime = System.nanoTime();
                     result = aStarSolver.solver(startWord, endWord, this.dictionary);
+                    endTime = System.nanoTime();
                     break;
             }
-            long endTime = System.nanoTime();
             totalTime = (endTime - startTime) / 1e6;
         }
         displayProperties(totalTime, result, propsLabel, valid);
-        return result;
+        displayResult(result, resultArea, endWord, valid);
     }
 
     private void displayProperties(double totalTime, WordLadder result, JLabel propsLabel, boolean valid) {
@@ -78,14 +84,40 @@ public class WordLadderEventHandler {
         }
     }
 
-    private void displayResult(WordLadder result, JTextArea resultArea) {
+    private void displayResult(WordLadder result, JTextPane resultArea, String endWord, boolean valid) {
         resultArea.setText("");
+
         if (result.getPath() == null) {
-            resultArea.append("\n   Path Not Found!");
+            appendToPane(resultArea, "\n    Path Not Found!\n", endWord, false);
         } else {
             for (int i = 0; i < result.getPath().size(); i++) {
-                resultArea.append(result.getPath().get(i) + "\n");
+                appendToPane(resultArea, result.getPath().get(i), endWord, valid);
             }
         }
     }
+
+    private void appendToPane(JTextPane tp, String msg, String endWord, boolean valid) {
+        StyleContext sc = StyleContext.getDefaultStyleContext();
+        AttributeSet blackAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground,
+                Color.BLACK);
+        AttributeSet redAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.RED);
+        AttributeSet blueAttributes = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.BLUE);
+
+        int len = tp.getDocument().getLength();
+        tp.setCaretPosition(len);
+        if (!valid) {
+            for (int i = 0; i < msg.length(); i++) {
+                tp.setCharacterAttributes(redAttributes, false);
+                tp.replaceSelection(String.valueOf(msg.charAt(i)));
+            }
+        } else {
+            for (int i = 0; i < endWord.length(); i++) {
+                AttributeSet attributes = (msg.charAt(i) == endWord.charAt(i)) ? blueAttributes : blackAttributes;
+                tp.setCharacterAttributes(attributes, false);
+                tp.replaceSelection(String.valueOf(msg.charAt(i)));
+            }
+        }
+        tp.replaceSelection("\n");
+    }
+
 }

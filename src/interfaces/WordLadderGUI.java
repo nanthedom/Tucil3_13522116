@@ -9,7 +9,7 @@ public class WordLadderGUI extends JFrame {
     private JTextField startField, endField;
     private JComboBox<String> algorithmDropdown;
     private JButton submitButton;
-    private JTextArea resultArea;
+    private JTextPane resultArea;
     private JScrollPane scrollPane;
 
     public WordLadderGUI() {
@@ -39,9 +39,9 @@ public class WordLadderGUI extends JFrame {
         algorithmDropdown = new JComboBox<>(algorithms);
 
         submitButton = new JButton("Solve!");
-        resultArea = new JTextArea(10, 30);
-        resultArea.setLineWrap(true);
-        resultArea.setWrapStyleWord(true);
+        resultArea = new JTextPane();
+        // resultArea.setLineWrap(true);
+        // resultArea.setWrapStyleWord(true);
 
         scrollPane = new JScrollPane(resultArea);
         scrollPane.setPreferredSize(new Dimension(300, 200));
