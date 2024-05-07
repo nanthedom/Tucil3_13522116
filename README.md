@@ -9,6 +9,7 @@ Penyelesaian Permainan Word Ladder Menggunakan Algoritma UCS, Greedy Best First 
   - [Struktur Program](#Struktur-Program)
   - [Requirement](#Requirement)
   - [Cara Menjalankan](#Cara-Menjalankan)
+  - [Screenshoot](#Screenshoot)
   - [Contact](#Contact)
 
 ## Author
@@ -99,6 +100,20 @@ Program dibuat menggunakan bahasa Java v 20.0.2 dan GUI dibuat menggunakan Java 
 5. Masukkan start word dan end word yang Anda inginkan lalu temukan solusinya!
 
 Note: Anda bisa mengganti dictionary dengan dictionary yang lebih lengkap atau yang anda inginkan dengan menempatkannya di root folder Tucil3_13522116 dan pastikan menggantinya dengan nama "dictionary.txt" agar bisa di-load.
+
+## Screenshoot
+### GUI
+<p align="center">
+<img src="test/GUI/GUI.jpg">
+<img src="test/GUI/Test1/AStar.jpg">
+</p>
+
+### CLI
+<p align="center">
+<img src="test/CLI/CLI1.jpg">
+<img src="test/CLI/CLI2.jpg">
+<img src="test/CLI/CLI3.jpg">
+</p>
 
 ## Contact
 Naufal Adnan - naufnan@gmail.com
